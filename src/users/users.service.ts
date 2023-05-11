@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -28,5 +29,12 @@ export class UsersService {
 		} else if (existingByEmail) {
 			return { warningMessage: 'A user with this email already exists' };
 		}
+
+		const hashedPassword = await bcrypt.hash(createUserDto.password, +process.env.SALT);
+		user.username = createUserDto.username;
+		user.password = hashedPassword;
+		user.email = createUserDto.email;
+
+		return user.save();
 	}
 }
