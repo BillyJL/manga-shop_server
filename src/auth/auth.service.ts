@@ -9,12 +9,12 @@ export class AuthService {
 	async validateUser(username: string, password: string) {
 		const user = await this.userService.findOne({ where: { username } });
 		if (!user) {
-			throw new UnauthorizedException('Invalid credential');
+			throw new UnauthorizedException('Invalid username');
 		}
 
 		const passwordValid = await bcrypt.compare(password, user.password);
 		if (!passwordValid) {
-			throw new UnauthorizedException('Invalid credential');
+			throw new UnauthorizedException('Invalid password');
 		}
 
 		return {
