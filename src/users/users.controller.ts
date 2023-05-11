@@ -1,6 +1,7 @@
 import {
 	Controller,
 	Post,
+	Get,
 	HttpCode,
 	HttpStatus,
 	Header,
@@ -11,6 +12,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('users')
 export class UsersController {
@@ -28,5 +30,11 @@ export class UsersController {
 	@HttpCode(HttpStatus.OK)
 	login(@Request() req) {
 		return { user: req.user, msg: 'Logged in' };
+	}
+
+	@Get('/login-check')
+	@UseGuards(AuthenticatedGuard)
+	loginCheck(@Request() req) {
+		return req.user;
 	}
 }
