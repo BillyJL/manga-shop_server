@@ -24,7 +24,7 @@ export class Manga extends Model {
 	pages: number;
 
 	@Column
-	size: number;
+	size: string;
 
 	@Column
 	language: string;
