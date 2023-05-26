@@ -21,4 +21,10 @@ export class MangasService {
 			where: { bestsellers: true },
 		});
 	}
+
+	async new(): Promise<{ count: number; rows: Manga[] }> {
+		return this.mangaModel.findAndCountAll({
+			where: { new: true },
+		});
+	}
 }
