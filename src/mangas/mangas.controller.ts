@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { MangasService } from './mangas.service';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
@@ -25,8 +25,20 @@ export class MangasController {
 	}
 
 	@UseGuards(AuthenticatedGuard)
-	@Get('New')
+	@Get('new')
 	getNew() {
 		return this.mangasService.new();
+	}
+
+	@UseGuards(AuthenticatedGuard)
+	@Post('search')
+	search(@Body() { search }: { search: string }) {
+		return this.mangasService.searchByString(search);
+	}
+
+	@UseGuards(AuthenticatedGuard)
+	@Post('name')
+	getByName(@Body() { name }: { name: string }) {
+		return this.mangasService.findOneByName(name);
 	}
 }

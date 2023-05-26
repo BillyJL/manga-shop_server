@@ -41,7 +41,7 @@ export class MangasService {
 		});
 	}
 
-	async findOneByString(str: string): Promise<{ count: number; rows: Manga[] }> {
+	async searchByString(str: string): Promise<{ count: number; rows: Manga[] }> {
 		return this.mangaModel.findAndCountAll({
 			limit: 20,
 			where: { name: { [Op.like]: `%${str}%` } },
