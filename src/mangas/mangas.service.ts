@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Manga } from './mangas.model';
 import { IMangaQuery } from './types';
+import Op from 'sequelize/types/operators';
 
 @Injectable()
 export class MangasService {
@@ -37,6 +38,13 @@ export class MangasService {
 	async findOneByName(name: string): Promise<Manga> {
 		return this.mangaModel.findOne({
 			where: { name },
+		});
+	}
+
+	async findOneByString(str: string): Promise<{ count: number; rows: Manga[] }> {
+		return this.mangaModel.findAndCountAll({
+			limit: 20,
+			where: { name: { [Op.like]: `%${str}%` } },
 		});
 	}
 }
