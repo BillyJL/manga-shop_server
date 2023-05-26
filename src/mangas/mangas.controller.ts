@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { MangasService } from './mangas.service';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
@@ -10,5 +10,11 @@ export class MangasController {
 	@Get()
 	paginateAndFilter(@Query() query) {
 		return this.mangasService.paginateAndFilter(query);
+	}
+
+	@UseGuards(AuthenticatedGuard)
+	@Get('find/:id')
+	getOne(@Param('id') id: string) {
+		return this.mangasService.findOne(id);
 	}
 }
