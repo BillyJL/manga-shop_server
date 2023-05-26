@@ -17,4 +17,16 @@ export class MangasController {
 	getOne(@Param('id') id: string) {
 		return this.mangasService.findOne(id);
 	}
+
+	@UseGuards(AuthenticatedGuard)
+	@Get('bestsellers')
+	getBestsellers() {
+		return this.mangasService.bestsellers();
+	}
+
+	@UseGuards(AuthenticatedGuard)
+	@Get('New')
+	getNew() {
+		return this.mangasService.new();
+	}
 }
