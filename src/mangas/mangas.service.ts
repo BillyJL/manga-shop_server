@@ -33,4 +33,10 @@ export class MangasService {
 			where: { id },
 		});
 	}
+
+	async findOneByName(name: string): Promise<Manga> {
+		return this.mangaModel.findOne({
+			where: { name },
+		});
+	}
 }
