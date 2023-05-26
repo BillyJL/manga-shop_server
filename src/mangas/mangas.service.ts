@@ -27,4 +27,10 @@ export class MangasService {
 			where: { new: true },
 		});
 	}
+
+	async findOne(id: number): Promise<Manga> {
+		return this.mangaModel.findOne({
+			where: { id },
+		});
+	}
 }
