@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Manga } from './mangas.model';
 import { IMangaQuery } from './types';
-import Op from 'sequelize/types/operators';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class MangasService {
