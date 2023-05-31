@@ -9,7 +9,7 @@ export class ShoppingCart extends Model {
 	mangaId: number;
 
 	@Column
-	name: string;
+	mangaName: string;
 
 	@Column
 	price: number;
