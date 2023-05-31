@@ -12,5 +12,5 @@ export class AddToCartDto {
 
 	@ApiProperty({ example: 1 })
 	@IsNotEmpty()
-	readonly partId: number;
+	readonly mangaId: number;
 }
