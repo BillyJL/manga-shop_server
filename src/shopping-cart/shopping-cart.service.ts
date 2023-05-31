@@ -33,5 +33,10 @@ export class ShoppingCartService {
 		return cart.save();
 	}
 
-	
+	async updateCount(count: number, mangaId: number): Promise<{ count: number }> {
+		await this.shoppingCart.update({ count }, { where: { mangaId } });
+
+		const manga = await this.shoppingCart.findOne({ where: { mangaId } });
+		return { count: manga.count };
+	}
 }
