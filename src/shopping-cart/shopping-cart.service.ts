@@ -11,4 +11,8 @@ export class ShoppingCartService {
 		private readonly userService: UsersService,
 		private readonly mangaService: MangasService,
 	) {}
+
+	async findAll(userId: number | string): Promise<ShoppingCart[]> {
+		return this.shoppingCart.findAll({ where: { userId } });
+	}
 }
