@@ -17,7 +17,7 @@ export class ShoppingCartService {
 		return this.shoppingCart.findAll({ where: { userId } });
 	}
 
-	async add(addToCartDto: AddToCartDto) {
+	async add(addToCartDto: AddToCartDto): Promise<ShoppingCart> {
 		const cart = new ShoppingCart();
 		const user = await this.userService.findOne({ where: { username: addToCartDto.username } });
 		const manga = await this.mangaService.findOne(addToCartDto.mangaId);
@@ -44,5 +44,15 @@ export class ShoppingCartService {
 		await this.shoppingCart.update({ totalPrice }, { where: { mangaId } });
 		const manga = await this.shoppingCart.findOne({ where: { mangaId } });
 		return { totalPrice: manga.totalPrice };
+	}
+
+	async remove(mangaId: number): Promise<void> {
+		const manga = await this.shoppingCart.findOne({ where: { mangaId } });
+
+		await manga.destroy();
+	}
+
+	async removeAll(userId: number): Promise<void> {
+		await this.shoppingCart.destroy({ where: { userId } });
 	}
 }
