@@ -28,7 +28,7 @@ export class ShoppingCartService {
 		cart.price = manga.price;
 		cart.image = JSON.stringify(manga.images)[0];
 		cart.amount = manga.amount;
-		cart.total_price = manga.price;
+		cart.totalPrice = manga.price;
 
 		return cart.save();
 	}
@@ -38,5 +38,11 @@ export class ShoppingCartService {
 
 		const manga = await this.shoppingCart.findOne({ where: { mangaId } });
 		return { count: manga.count };
+	}
+
+	async updateTotalPrice(totalPrice: number, mangaId: number): Promise<{ totalPrice: number }> {
+		await this.shoppingCart.update({ totalPrice }, { where: { mangaId } });
+		const manga = await this.shoppingCart.findOne({ where: { mangaId } });
+		return { totalPrice: manga.totalPrice };
 	}
 }
