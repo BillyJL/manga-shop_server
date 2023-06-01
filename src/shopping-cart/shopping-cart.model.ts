@@ -24,5 +24,5 @@ export class ShoppingCart extends Model {
 	count: number;
 
 	@Column
-	total_price: number;
+	totalPrice: number;
 }
