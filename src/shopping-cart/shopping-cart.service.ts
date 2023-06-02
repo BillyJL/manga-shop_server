@@ -13,7 +13,7 @@ export class ShoppingCartService {
 		private readonly mangaService: MangasService,
 	) {}
 
-	async findAll(userId: number | string): Promise<ShoppingCart[]> {
+	async findAll(userId: number): Promise<ShoppingCart[]> {
 		return this.shoppingCart.findAll({ where: { userId } });
 	}
 
