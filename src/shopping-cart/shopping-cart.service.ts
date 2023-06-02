@@ -26,7 +26,7 @@ export class ShoppingCartService {
 		cart.mangaId = manga.id;
 		cart.mangaName = manga.name;
 		cart.price = manga.price;
-		cart.image = JSON.stringify(manga.images)[0];
+		cart.image = JSON.parse(manga.images)[0];
 		cart.amount = manga.amount;
 		cart.totalPrice = manga.price;
 
