@@ -36,17 +36,6 @@ describe('Users Controller', () => {
 		await app.init();
 	});
 
-	beforeEach(async () => {
-		const user = new User();
-
-		const hashedPassword = await bcrypt.hash(mockedUser.password, +process.env.SALT);
-		user.username = mockedUser.username;
-		user.password = hashedPassword;
-		user.email = mockedUser.email;
-
-		return user.save();
-	});
-
 	afterEach(async () => {
 		await User.destroy({ where: { username: mockedUser.username } });
 		await User.destroy({ where: { username: 'Test' } });
