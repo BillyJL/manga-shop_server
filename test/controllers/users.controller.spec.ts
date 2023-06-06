@@ -9,12 +9,6 @@ import { UsersModule } from 'src/users/users.module';
 import * as bcrypt from 'bcrypt';
 import * as request from 'supertest';
 
-const mockedUser = {
-	username: 'John',
-	email: 'jhon@snow.com',
-	password: 'john123',
-};
-
 describe('Users Controller', () => {
 	let app: INestApplication;
 
@@ -37,7 +31,6 @@ describe('Users Controller', () => {
 	});
 
 	afterEach(async () => {
-		await User.destroy({ where: { username: mockedUser.username } });
 		await User.destroy({ where: { username: 'Test' } });
 	});
 
