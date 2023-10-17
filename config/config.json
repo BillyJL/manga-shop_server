@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "test",
-    "host": "localhost",
+    "username": "freedb_TarasUser",
+    "password": "FrZSr5KG!nJ??Be",
+    "database": "freedb_manga_shop",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port": 3306
   },
   "test": {
-    "username": "root",
-    "password": "root",
-    "database": "test",
-    "host": "localhost",
+    "username": "freedb_TarasUser",
+    "password": "FrZSr5KG!nJ??Be",
+    "database": "freedb_manga_shop",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port": 3306
   },
   "production": {
-    "username": "root",
-    "password": "root",
-    "database": "test",
-    "host": "localhost",
+    "username": "freedb_TarasUser",
+    "password": "FrZSr5KG!nJ??Be",
+    "database": "freedb_manga_shop",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port": 3306
   }
